@@ -13,11 +13,13 @@ public class Client {
 
     public void start() {
         try {
+            log.info("== Establishing connection to Server... ==");
             Socket socket = new Socket(IP, PORT);
             PrintWriter output = new PrintWriter(socket.getOutputStream());
             BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 
             if (socket.isConnected()) {
+                log.info("=================== OK ===================");
                 new Thread(() -> listen(socket)).start();
                 registration(input, output);
             }
