@@ -27,7 +27,7 @@ public class Client {
             while (true) {
                 String message = input.readLine();
                 if (message.equals("@exit")) {
-                    break;
+                    return;
                 }
                 output.println(message);
                 output.flush();
