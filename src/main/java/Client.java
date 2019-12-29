@@ -54,7 +54,7 @@ public class Client {
         String login = input.readLine();
         System.out.println("Please, enter your password");
         String password = input.readLine();
-        output.println("@reg" + " " + login + " " + password);
+        output.println(login + " " + password);
         output.flush();
     }
 }
