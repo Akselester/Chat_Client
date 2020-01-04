@@ -10,6 +10,7 @@ import java.net.Socket;
 public class Client {
     public static final String IP = "localhost";
     public static final int PORT = 8080;
+    private String username;
 
     public void start() {
         try {
@@ -42,6 +43,9 @@ public class Client {
             BufferedReader serverInput = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String incomingMessage;
             while ((incomingMessage = serverInput.readLine()) != null) {
+                if (incomingMessage.startsWith(username)) {
+                    incomingMessage = "YOU << " + incomingMessage.split(" >> ")[1];
+                }
                 System.out.println(incomingMessage);
             }
         } catch (IOException e) {
@@ -52,6 +56,7 @@ public class Client {
     private void registration(BufferedReader input, PrintWriter output) throws IOException {
         System.out.println("Please, enter your login");
         String login = input.readLine();
+        username = login;
         System.out.println("Please, enter your password");
         String password = input.readLine();
         output.println(login + " " + password);
